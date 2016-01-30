@@ -30,6 +30,7 @@ public class LimbController : MonoBehaviour
     [SerializeField]
     float limitZ = 0.75f;
     private Animator animator;
+	private Collider coll;
 
     private Vector3 rightHandPos;
 	private Vector3 leftHandPos;
@@ -45,7 +46,10 @@ public class LimbController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        animator = GetComponent<Animator>();
+		animator = GetComponent<Animator>();
+
+		//coll = GetComponent<Collider>();
+
 		//animator.enabled = false;
         //leftHandTarget.localPosition = new Vector3(0, 0, 0);
         //rightHandTarget.localPosition = new Vector3(0, 0, 0);
@@ -153,9 +157,42 @@ public class LimbController : MonoBehaviour
 
 	public void NotifyCollision(Collider bodyPart)
 	{
+		if (!animator.enabled)
+			return;
+		
 		print ("My " + bodyPart.name + "Collided with an obstacle!");
 
-		bodyPart.transform.localScale = Vector3.zero;
+		if (bodyPart.name == "Elbow_L" || bodyPart.name == "Elbow_R" ||
+			bodyPart.name == "Shoulder_L" || bodyPart.name == "Shoulder_R" ||
+			bodyPart.name == "Hip_L" || bodyPart.name == "Hip_R" ||
+		    bodyPart.name == "Knee_L" || bodyPart.name == "Knee_R") {
+
+			// Lost a limb!
+			bodyPart.transform.localScale = Vector3.zero;
+			bodyPart.enabled = false;
+		}
+		else 
+		{
+			// You Lose!!
+		animator.enabled = false;
+
+			foreach (Collider collider in GetComponentsInChildren<Collider>())
+			{
+				//collider.enabled = false;
+				if (bodyPart.transform.localScale != Vector3.zero) {
+					collider.isTrigger = false;
+				}
+				//collider.enabled = true;
+			}
+
+		//coll.attachedRigidbody.useGravity = true;
+			//Vector3 pushForce = new Vector3(0.0f, 10.0f, 0.0f);
+			//GameObject obj = GameObject.Find ("Root_M");
+			//Rigidbody pelvis = obj.GetComponent<Rigidbody> (); //transform.Find<Rigidbody> ("Root_M");//.GetComponent<Rigidbody> ();
+			//pelvis.AddForce(pushForce);
+		}
+
+
 	}
 
 }
