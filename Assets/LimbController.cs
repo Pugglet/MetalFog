@@ -39,6 +39,9 @@ public class LimbController : MonoBehaviour
 	private float leftFootExtension;
 	private float rightFootExtension;
 
+	private Quaternion leftHandRotation;
+	private Quaternion rightHandRotation;
+
     // Use this for initialization
     void Start()
     {
@@ -80,20 +83,30 @@ public class LimbController : MonoBehaviour
 			rightFootTarget.position += new Vector3(-0.5f, 0, 0) * Time.deltaTime;
         }
 
-        float rightHandHorizontal = Input.GetAxis("RightStickX");        
-        float rightHandVertical = Input.GetAxis("RightStickY");
+		float handRadiusHMultiplier = 0.3f;
+		float handRadiusVMultiplier = 0.7f;
+
+		float rightHandHorizontal = Input.GetAxis("RightStickX") * handRadiusHMultiplier;        
+		float rightHandVertical = Input.GetAxis("RightStickY") * handRadiusVMultiplier;
         rightHandPos = new Vector3(rightHandTarget.position.x + rightHandHorizontal, rightHandTarget.position.y, rightHandTarget.position.z + rightHandVertical);
 
-        float leftHandHorizontal = Input.GetAxis("LeftStickX");
-        float leftHandVertical = Input.GetAxis("LeftStickY");
+		float leftHandHorizontal = Input.GetAxis("LeftStickX") * handRadiusHMultiplier;
+		float leftHandVertical = Input.GetAxis("LeftStickY") * handRadiusVMultiplier;
         leftHandPos = new Vector3(leftHandTarget.position.x + leftHandHorizontal, leftHandTarget.position.y, leftHandTarget.position.z + leftHandVertical);
 
 
-		rightFootExtension = Input.GetAxis("RightTrigger");
+		rightFootExtension = Input.GetAxis("RightTrigger") * 0.5f;
 		rightFootPos = new Vector3(rightFootTarget.position.x, rightFootTarget.position.y, rightFootTarget.position.z + rightFootExtension);
 
-		leftFootExtension = Input.GetAxis("LeftTrigger");
+		leftFootExtension = Input.GetAxis("LeftTrigger") * 0.5f;
 		leftFootPos = new Vector3(leftFootTarget.position.x, leftFootTarget.position.y, leftFootTarget.position.z + leftFootExtension);
+
+		//Transform leftWristTransform = 
+		leftHandRotation = Quaternion.identity;//animator.GetBoneTransform (HumanBodyBones.LeftLowerArm).localRotation;
+		rightHandRotation = Quaternion.identity;// animator.GetBoneTransform (HumanBodyBones.RightLowerArm).localRotation;
+
+		animator.SetBoneLocalRotation (HumanBodyBones.LeftHand, leftHandRotation);
+		animator.SetBoneLocalRotation (HumanBodyBones.RightHand, rightHandRotation);
     }
 
     void OnAnimatorIK()
@@ -111,17 +124,22 @@ public class LimbController : MonoBehaviour
         animator.SetIKRotationWeight(AvatarIKGoal.RightFoot, 1);
 
         animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandPos);
-        animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandTarget.rotation);
+		//animator.SetIKRotation (AvatarIKGoal.RightHand, leftHandRotation);//rightHandTarget.rotation);
 
         animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandPos);
-        animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHandTarget.rotation);
+		//animator.SetIKRotation (AvatarIKGoal.LeftHand, rightHandRotation);//leftHandTarget.rotation);
 
 		// knee hints
 		animator.SetIKHintPosition(AvatarIKHint.LeftKnee, leftKneeHint.position);
 		animator.SetIKHintPosition(AvatarIKHint.RightKnee, rightKneeHint.position);
-
 		animator.SetIKHintPositionWeight(AvatarIKHint.LeftKnee, leftFootExtension);
 		animator.SetIKHintPositionWeight(AvatarIKHint.RightKnee, rightFootExtension);
+
+		// elbow hints
+		animator.SetIKHintPosition(AvatarIKHint.LeftElbow, leftKneeHint.position);
+		animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightKneeHint.position);
+		animator.SetIKHintPositionWeight (AvatarIKHint.LeftElbow, 1.0f);//0.5f);
+		animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1.0f);//0.5f);
 
 		animator.SetIKPosition(AvatarIKGoal.RightFoot, rightFootPos);
 		//animator.SetIKRotation(AvatarIKGoal.RightFoot, rightFootTarget.rotation);
