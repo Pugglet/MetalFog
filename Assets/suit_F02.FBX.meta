@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fe586d8433e29064aaeeaed49354f08e
-timeCreated: 1454124581
+guid: f1465e5bfca3d524fad97b6e39f484cc
+timeCreated: 1454125657
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -204,6 +204,7 @@ ModelImporter:
     4300020: Man_l_leg
     4300022: Man_r_leg
     4300024: Man_l_leg_upper
+    7400000: Take 001
     9500000: //RootNode
     13700000: EyeL
     13700002: EyeR
