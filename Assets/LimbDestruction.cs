@@ -19,9 +19,16 @@ public class LimbDestruction : MonoBehaviour {
     public void CollisionCallback() {
         relatedLimb.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
-        foreach (SkinnedMeshRenderer mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
+        int childCount = transform.childCount;
+
+        Debug.Log(relatedLimb.name + " has " + childCount.ToString() +  " children");
+
+        for (int i = 0; i < 0; i++)
         {
-            mesh.enabled = false;
-        }
+            Transform child = transform.GetChild(i);
+            LimbDestruction destructionScript = child.GetComponent<LimbDestruction>();
+            destructionScript.CollisionCallback();
+            Debug.Log("Child limb destryoed");
+        }       
     }
 }
