@@ -16,6 +16,10 @@ public class Obstacle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (limbController.GetIsDead ()) {
+			YSpeed = 0;
+			return;
+		}
 		transform.position += new Vector3(0, YSpeed, 0) * Time.deltaTime;
 
 		if (transform.position.y > 2) {

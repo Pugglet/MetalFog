@@ -3,6 +3,10 @@ using System.Collections;
 
 public class TextureWrap : MonoBehaviour {
 
+
+	[SerializeField]
+	private LimbController limbController;
+
 	private Renderer renderer;
 	private Vector2 offset;
 	// Use this for initialization
@@ -12,7 +16,9 @@ public class TextureWrap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		offset.y += 0.2f * Time.deltaTime;
+		if (limbController.GetIsDead ())
+			return;
+		offset.y += 0.6f * Time.deltaTime;
 		//renderer.material.SetTextureOffset ("brickwall", offset);
 		//print("tex name: " + renderer.materials[ 0 ].GetTexture(0).name);
 		renderer.materials[ 0 ].SetTextureOffset ("_MainTex", offset);
