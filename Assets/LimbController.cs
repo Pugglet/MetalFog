@@ -46,6 +46,9 @@ public class LimbController : MonoBehaviour
 	private Vector3 rightFootPos;
 	private Vector3 leftFootPos;
 
+	private Transform core;
+	private Vector3 corePos;
+
 	private float leftFootExtension;
 	private float rightFootExtension;
 
@@ -54,6 +57,15 @@ public class LimbController : MonoBehaviour
 
 	private bool isDead;
 
+	public bool GetIsDead()
+	{
+		return isDead;
+	}
+
+	public Vector3 GetCorePos ()
+	{
+		return corePos;
+	}
 
 
     // Use this for initialization
@@ -70,7 +82,7 @@ public class LimbController : MonoBehaviour
         foreach (Collider collider in GetComponentsInChildren<Collider>())
         {
             //collider.enabled = false;
-			collider.isTrigger = true;
+			//collider.isTrigger = true;
 			//collider.enabled = true;
         }
 
@@ -78,11 +90,30 @@ public class LimbController : MonoBehaviour
         {
             rb.useGravity = false;
         }             
+
+		core = FindChild (transform, "Root_M");
+		if (core == null) {
+			print ("Root_M doesn't exist!");
+		}
     }
+
+	Transform FindChild( Transform target, string name)
+	{
+		if (target.name == name)
+			return target;
+
+		for (int i = 0; i < target.GetChildCount(); ++i)
+		{
+			return FindChild(target.GetChild(i), name);
+		}
+
+		return null;
+	}
 
     // Update is called once per frame
     void Update()
 	{
+		corePos = core.transform.position;
 		if (isDead)
 		{
 			if (Input.GetButtonUp ("Submit")) {
