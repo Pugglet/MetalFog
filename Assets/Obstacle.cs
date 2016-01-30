@@ -26,6 +26,6 @@ public class Obstacle : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		limbController.NotifyCollision (other);
-		//Destroy(gameObject);
+		//Destroy(gameObject); 
 	}
 }
