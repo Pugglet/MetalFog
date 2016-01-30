@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
 
@@ -51,6 +52,8 @@ public class LimbController : MonoBehaviour
 	private Quaternion leftHandRotation;
 	private Quaternion rightHandRotation;
 
+	private bool isDead;
+
 
 
     // Use this for initialization
@@ -79,7 +82,18 @@ public class LimbController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+	{
+		if (isDead)
+		{
+			if (Input.GetButtonUp ("Submit")) {
+				SceneManager.LoadScene ("Temp"); 
+			} else if (Input.GetButtonUp ("Cancel")) {
+				SceneManager.LoadScene ("exterior_scene"); 
+			}
+
+			return;
+		}
+
         if (Input.GetKey("up"))
         {
             rightFootTarget.position += new Vector3(0, 0, 0.5f) * Time.deltaTime;
@@ -167,7 +181,7 @@ public class LimbController : MonoBehaviour
 
 	public void NotifyCollision(Collider bodyPart)
 	{
-		if (!animator.enabled)
+		if (isDead)
 			return;
 		
 		print ("My " + bodyPart.name + "Collided with an obstacle!");
@@ -205,6 +219,7 @@ public class LimbController : MonoBehaviour
             if (limbLossCount >= limbLossFailCount)
             {
                 // You Lose!!
+				isDead = true;
                 animator.enabled = false;
 
                 foreach (Collider collider in GetComponentsInChildren<Collider>())
