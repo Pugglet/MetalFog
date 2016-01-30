@@ -29,6 +29,14 @@ public class LimbController : MonoBehaviour
 
     [SerializeField]
     float limitZ = 0.75f;
+
+    [SerializeField]
+    int limbLossFailCount = 2;
+
+    int limbLossCount = 0;
+
+    GameObject lastHitObject = null;
+
     private Animator animator;
 	private Collider coll;
 
@@ -42,6 +50,8 @@ public class LimbController : MonoBehaviour
 
 	private Quaternion leftHandRotation;
 	private Quaternion rightHandRotation;
+
+
 
     // Use this for initialization
     void Start()
@@ -63,7 +73,7 @@ public class LimbController : MonoBehaviour
 
         foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
         {
-           // rb.useGravity = false;
+            rb.useGravity = false;
         }             
     }
 
@@ -106,18 +116,18 @@ public class LimbController : MonoBehaviour
 		rightFootPos = new Vector3(rightFootTarget.position.x, rightFootTarget.position.y, rightFootTarget.position.z + rightFootExtension);
 
 		leftFootExtension = Input.GetAxis("LeftTrigger") * 0.5f;
-		leftFootPos = new Vector3(leftFootTarget.position.x, leftFootTarget.position.y, leftFootTarget.position.z + leftFootExtension);
-
-		//Transform leftWristTransform = 
-		leftHandRotation = Quaternion.identity;//animator.GetBoneTransform (HumanBodyBones.LeftLowerArm).localRotation;
-		rightHandRotation = Quaternion.identity;// animator.GetBoneTransform (HumanBodyBones.RightLowerArm).localRotation;
-
-		animator.SetBoneLocalRotation (HumanBodyBones.LeftHand, leftHandRotation);
-		animator.SetBoneLocalRotation (HumanBodyBones.RightHand, rightHandRotation);
+		leftFootPos = new Vector3(leftFootTarget.position.x, leftFootTarget.position.y, leftFootTarget.position.z + leftFootExtension);		
     }
 
     void OnAnimatorIK()
     {
+        //Transform leftWristTransform = 
+        leftHandRotation = Quaternion.identity;//animator.GetBoneTransform (HumanBodyBones.LeftLowerArm).localRotation;
+        rightHandRotation = Quaternion.identity;// animator.GetBoneTransform (HumanBodyBones.RightLowerArm).localRotation;
+
+        animator.SetBoneLocalRotation(HumanBodyBones.LeftHand, leftHandRotation);
+        animator.SetBoneLocalRotation(HumanBodyBones.RightHand, rightHandRotation);
+
         animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
         animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
         
@@ -162,40 +172,63 @@ public class LimbController : MonoBehaviour
 		
 		print ("My " + bodyPart.name + "Collided with an obstacle!");
 
-		if (bodyPart.name == "Elbow_L" || bodyPart.name == "Elbow_R" ||
-			bodyPart.name == "Shoulder_L" || bodyPart.name == "Shoulder_R" ||
-			bodyPart.name == "Hip_L" || bodyPart.name == "Hip_R" ||
-		    bodyPart.name == "Knee_L" || bodyPart.name == "Knee_R") {
+        if (bodyPart.name == "Elbow_L" || bodyPart.name == "Elbow_R" ||
+            bodyPart.name == "Shoulder_L" || bodyPart.name == "Shoulder_R" ||
+            bodyPart.name == "Hip_L" || bodyPart.name == "Hip_R" ||
+            bodyPart.name == "Knee_L" || bodyPart.name == "Knee_R") {
 
             // Lost a limb!
             //bodyPart.transform.localScale = Vector3.zero;
             //bodyPart.enabled = false;
             bodyPart.gameObject.GetComponent<LimbDestruction>().CollisionCallback();
+
+            if (lastHitObject == null)
+            {
+                limbLossCount++;
+                lastHitObject = bodyPart.gameObject;
+                return;
+            }
+
+            string hitID = bodyPart.transform.name;
+            string hitParentID = bodyPart.transform.parent.name;
+            string lastHitParentID = lastHitObject.transform.parent.name;
+
+            if (hitID != lastHitParentID &&
+                hitParentID != lastHitObject.name &&
+                hitID != lastHitObject.name)
+            {
+                limbLossCount++;
+            }
+
+            lastHitObject = bodyPart.gameObject;
+
+            if (limbLossCount >= limbLossFailCount)
+            {
+                // You Lose!!
+                animator.enabled = false;
+
+                foreach (Collider collider in GetComponentsInChildren<Collider>())
+                {
+                    if (bodyPart.transform.localScale != Vector3.zero)
+                    {
+                        collider.isTrigger = false;
+                    }
+                    //collider.enabled = true;
+                }
+
+                foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+                {
+                    rb.useGravity = true;
+                }
+
+                //coll.attachedRigidbody.useGravity = true;
+                //Vector3 pushForce = new Vector3(0.0f, 10.0f, 0.0f);
+                //GameObject obj = GameObject.Find ("Root_M");
+                //Rigidbody pelvis = obj.GetComponent<Rigidbody> (); //transform.Find<Rigidbody> ("Root_M");//.GetComponent<Rigidbody> ();
+                //pelvis.AddForce(pushForce);
+            }
         }
-		else 
-		{
-			// You Lose!!
-		animator.enabled = false;
-
-			foreach (Collider collider in GetComponentsInChildren<Collider>())
-			{
-				//collider.enabled = false;
-				if (bodyPart.transform.localScale != Vector3.zero) {
-					collider.isTrigger = false;
-				}
-				//collider.enabled = true;
-			}
-
-		//coll.attachedRigidbody.useGravity = true;
-			//Vector3 pushForce = new Vector3(0.0f, 10.0f, 0.0f);
-			//GameObject obj = GameObject.Find ("Root_M");
-			//Rigidbody pelvis = obj.GetComponent<Rigidbody> (); //transform.Find<Rigidbody> ("Root_M");//.GetComponent<Rigidbody> ();
-			//pelvis.AddForce(pushForce);
-		}
-
-
-	}
-
+    }
 }
 
 internal class auto

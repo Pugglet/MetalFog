@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour {
 	void Update () {
 		transform.position += new Vector3(0, YSpeed, 0) * Time.deltaTime;
 
-		if (transform.position.y > 10) {
+		if (transform.position.y > 2) {
 			Vector3 newPos = new Vector3(0, -40, 0);
 			transform.position = newPos;
 		}
