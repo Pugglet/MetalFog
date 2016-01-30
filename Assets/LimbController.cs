@@ -12,6 +12,18 @@ public class LimbController : MonoBehaviour
     [SerializeField]
     private Transform rightHandTarget;
 
+	[SerializeField]
+	private Transform leftFootTarget;
+
+	[SerializeField]
+	private Transform rightFootTarget;
+
+	[SerializeField]
+	private Transform leftKneeHint;
+
+	[SerializeField]
+	private Transform rightKneeHint;
+
     [SerializeField]
     float limitX = 0.75f;
 
@@ -20,7 +32,12 @@ public class LimbController : MonoBehaviour
     private Animator animator;
 
     private Vector3 rightHandPos;
-    private Vector3 leftHandPos;
+	private Vector3 leftHandPos;
+	private Vector3 rightFootPos;
+	private Vector3 leftFootPos;
+
+	private float leftFootExtension;
+	private float rightFootExtension;
 
     // Use this for initialization
     void Start()
@@ -31,7 +48,7 @@ public class LimbController : MonoBehaviour
 
         foreach (Collider collider in GetComponentsInChildren<Collider>())
         {
-            //collider.isTrigger = true;
+            collider.enabled = false;
         }
 
         foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
@@ -45,22 +62,22 @@ public class LimbController : MonoBehaviour
     {
         if (Input.GetKey("up"))
         {
-            rightHandTarget.position += new Vector3(0, 0, 0.5f) * Time.deltaTime;
+            rightFootTarget.position += new Vector3(0, 0, 0.5f) * Time.deltaTime;
         }
 
         if (Input.GetKey("down"))
         {
-            rightHandTarget.position += new Vector3(0, 0, -0.5f) * Time.deltaTime;
+			rightFootTarget.position += new Vector3(0, 0, -0.5f) * Time.deltaTime;
         }
 
         if (Input.GetKey("right"))
         {
-            rightHandTarget.position += new Vector3(0.5f, 0, 0) * Time.deltaTime;
+			rightFootTarget.position += new Vector3(0.5f, 0, 0) * Time.deltaTime;
         }
 
         if (Input.GetKey("left"))
         {
-            rightHandTarget.position += new Vector3(-0.5f, 0, 0) * Time.deltaTime;
+			rightFootTarget.position += new Vector3(-0.5f, 0, 0) * Time.deltaTime;
         }
 
         float rightHandHorizontal = Input.GetAxis("RightStickX");        
@@ -70,6 +87,13 @@ public class LimbController : MonoBehaviour
         float leftHandHorizontal = Input.GetAxis("LeftStickX");
         float leftHandVertical = Input.GetAxis("LeftStickY");
         leftHandPos = new Vector3(leftHandTarget.position.x + leftHandHorizontal, leftHandTarget.position.y, leftHandTarget.position.z + leftHandVertical);
+
+
+		rightFootExtension = Input.GetAxis("RightTrigger");
+		rightFootPos = new Vector3(rightFootTarget.position.x, rightFootTarget.position.y, rightFootTarget.position.z + rightFootExtension);
+
+		leftFootExtension = Input.GetAxis("LeftTrigger");
+		leftFootPos = new Vector3(leftFootTarget.position.x, leftFootTarget.position.y, leftFootTarget.position.z + leftFootExtension);
     }
 
     void OnAnimatorIK()
@@ -80,17 +104,30 @@ public class LimbController : MonoBehaviour
         animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
 
-        animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 0);
-        animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, 0);
+        animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 1);
+        animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, 1);
         
-        animator.SetIKPositionWeight(AvatarIKGoal.RightFoot, 0);
-        animator.SetIKRotationWeight(AvatarIKGoal.RightFoot, 0);
+        animator.SetIKPositionWeight(AvatarIKGoal.RightFoot, 1);
+        animator.SetIKRotationWeight(AvatarIKGoal.RightFoot, 1);
 
         animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandPos);
         animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandTarget.rotation);
 
         animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandPos);
         animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHandTarget.rotation);
+
+		// knee hints
+		animator.SetIKHintPosition(AvatarIKHint.LeftKnee, leftKneeHint.position);
+		animator.SetIKHintPosition(AvatarIKHint.RightKnee, rightKneeHint.position);
+
+		animator.SetIKHintPositionWeight(AvatarIKHint.LeftKnee, leftFootExtension);
+		animator.SetIKHintPositionWeight(AvatarIKHint.RightKnee, rightFootExtension);
+
+		animator.SetIKPosition(AvatarIKGoal.RightFoot, rightFootPos);
+		//animator.SetIKRotation(AvatarIKGoal.RightFoot, rightFootTarget.rotation);
+
+		animator.SetIKPosition(AvatarIKGoal.LeftFoot, leftFootPos);
+		//animator.SetIKRotation (AvatarIKGoal.LeftFoot, leftFootTarget.rotation);
     }
 }
 
