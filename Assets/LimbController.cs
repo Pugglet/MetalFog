@@ -46,17 +46,20 @@ public class LimbController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+		//animator.enabled = false;
         //leftHandTarget.localPosition = new Vector3(0, 0, 0);
         //rightHandTarget.localPosition = new Vector3(0, 0, 0);
 
         foreach (Collider collider in GetComponentsInChildren<Collider>())
         {
-            collider.enabled = false;
+            //collider.enabled = false;
+			collider.isTrigger = true;
+			//collider.enabled = true;
         }
 
         foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
         {
-            rb.useGravity = false;
+           // rb.useGravity = false;
         }             
     }
 
@@ -147,6 +150,14 @@ public class LimbController : MonoBehaviour
 		animator.SetIKPosition(AvatarIKGoal.LeftFoot, leftFootPos);
 		//animator.SetIKRotation (AvatarIKGoal.LeftFoot, leftFootTarget.rotation);
     }
+
+	public void NotifyCollision(Collider bodyPart)
+	{
+		print ("My " + bodyPart.name + "Collided with an obstacle!");
+
+		bodyPart.transform.localScale = Vector3.zero;
+	}
+
 }
 
 internal class auto
