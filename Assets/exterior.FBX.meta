@@ -1,0 +1,208 @@
+fileFormatVersion: 2
+guid: 1bc2f27c94d0e8048b1b4af3ffdd4267
+timeCreated: 1454138470
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ATree3D_Default_001
+    100002: ATree3D_Default_001_Leaves
+    100004: ATree3D_Default_002
+    100006: ATree3D_Default_002_Leaves
+    100008: ATree3D_Default_003
+    100010: ATree3D_Default_003_Leaves
+    100012: ATree3D_Default_004
+    100014: ATree3D_Default_004_Leaves
+    100016: ATree3D_Default_005
+    100018: ATree3D_Default_005_Leaves
+    100020: ATree3D_Default_006
+    100022: ATree3D_Default_006_Leaves
+    100024: brick_ring
+    100026: debris_gumdrop_1
+    100028: debris_gumdrop_2
+    100030: debris_gumdrop_2 1
+    100032: debris_gumdrop_3
+    100034: debris_gumdrop_3 1
+    100036: debris_gumdrop_4
+    100038: debris_gumdrop_5
+    100040: debris_rubble_1
+    100042: debris_rubble_2
+    100044: debris_rubble_3
+    100046: debris_rubble_4
+    100048: debris_rubble_5
+    100050: //RootNode
+    100052: ground
+    100054: Plane002
+    400000: ATree3D_Default_001
+    400002: ATree3D_Default_001_Leaves
+    400004: ATree3D_Default_002
+    400006: ATree3D_Default_002_Leaves
+    400008: ATree3D_Default_003
+    400010: ATree3D_Default_003_Leaves
+    400012: ATree3D_Default_004
+    400014: ATree3D_Default_004_Leaves
+    400016: ATree3D_Default_005
+    400018: ATree3D_Default_005_Leaves
+    400020: ATree3D_Default_006
+    400022: ATree3D_Default_006_Leaves
+    400024: brick_ring
+    400026: debris_gumdrop_1
+    400028: debris_gumdrop_2
+    400030: debris_gumdrop_2 1
+    400032: debris_gumdrop_3
+    400034: debris_gumdrop_3 1
+    400036: debris_gumdrop_4
+    400038: debris_gumdrop_5
+    400040: debris_rubble_1
+    400042: debris_rubble_2
+    400044: debris_rubble_3
+    400046: debris_rubble_4
+    400048: debris_rubble_5
+    400050: //RootNode
+    400052: ground
+    400054: Plane002
+    2300000: ATree3D_Default_001
+    2300002: ATree3D_Default_001_Leaves
+    2300004: ATree3D_Default_002
+    2300006: ATree3D_Default_002_Leaves
+    2300008: ATree3D_Default_003
+    2300010: ATree3D_Default_003_Leaves
+    2300012: ATree3D_Default_004
+    2300014: ATree3D_Default_004_Leaves
+    2300016: ATree3D_Default_005
+    2300018: ATree3D_Default_005_Leaves
+    2300020: ATree3D_Default_006
+    2300022: ATree3D_Default_006_Leaves
+    2300024: brick_ring
+    2300026: debris_gumdrop_1
+    2300028: debris_gumdrop_2
+    2300030: debris_gumdrop_2 1
+    2300032: debris_gumdrop_3
+    2300034: debris_gumdrop_3 1
+    2300036: debris_gumdrop_4
+    2300038: debris_gumdrop_5
+    2300040: debris_rubble_1
+    2300042: debris_rubble_2
+    2300044: debris_rubble_3
+    2300046: debris_rubble_4
+    2300048: debris_rubble_5
+    2300050: ground
+    2300052: Plane002
+    3300000: ATree3D_Default_001
+    3300002: ATree3D_Default_001_Leaves
+    3300004: ATree3D_Default_002
+    3300006: ATree3D_Default_002_Leaves
+    3300008: ATree3D_Default_003
+    3300010: ATree3D_Default_003_Leaves
+    3300012: ATree3D_Default_004
+    3300014: ATree3D_Default_004_Leaves
+    3300016: ATree3D_Default_005
+    3300018: ATree3D_Default_005_Leaves
+    3300020: ATree3D_Default_006
+    3300022: ATree3D_Default_006_Leaves
+    3300024: brick_ring
+    3300026: debris_gumdrop_1
+    3300028: debris_gumdrop_2
+    3300030: debris_gumdrop_2 1
+    3300032: debris_gumdrop_3
+    3300034: debris_gumdrop_3 1
+    3300036: debris_gumdrop_4
+    3300038: debris_gumdrop_5
+    3300040: debris_rubble_1
+    3300042: debris_rubble_2
+    3300044: debris_rubble_3
+    3300046: debris_rubble_4
+    3300048: debris_rubble_5
+    3300050: ground
+    3300052: Plane002
+    4300000: brick_ring
+    4300002: Plane002
+    4300004: ground
+    4300006: debris_gumdrop_1
+    4300008: debris_gumdrop_2
+    4300010: debris_gumdrop_3
+    4300012: debris_rubble_1
+    4300014: debris_rubble_2
+    4300016: debris_rubble_3
+    4300018: debris_rubble_4
+    4300020: debris_rubble_5
+    4300022: debris_gumdrop_2
+    4300024: debris_gumdrop_3
+    4300026: debris_gumdrop_4
+    4300028: debris_gumdrop_5
+    4300030: ATree3D_Default_001
+    4300032: ATree3D_Default_001_Leaves
+    4300034: ATree3D_Default_002
+    4300036: ATree3D_Default_002_Leaves
+    4300038: ATree3D_Default_003
+    4300040: ATree3D_Default_003_Leaves
+    4300042: ATree3D_Default_004
+    4300044: ATree3D_Default_004_Leaves
+    4300046: ATree3D_Default_005
+    4300048: ATree3D_Default_005_Leaves
+    4300050: ATree3D_Default_006
+    4300052: ATree3D_Default_006_Leaves
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
