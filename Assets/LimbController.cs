@@ -167,10 +167,11 @@ public class LimbController : MonoBehaviour
 			bodyPart.name == "Hip_L" || bodyPart.name == "Hip_R" ||
 		    bodyPart.name == "Knee_L" || bodyPart.name == "Knee_R") {
 
-			// Lost a limb!
-			bodyPart.transform.localScale = Vector3.zero;
-			bodyPart.enabled = false;
-		}
+            // Lost a limb!
+            //bodyPart.transform.localScale = Vector3.zero;
+            //bodyPart.enabled = false;
+            bodyPart.gameObject.GetComponent<LimbDestruction>().CollisionCallback();
+        }
 		else 
 		{
 			// You Lose!!
