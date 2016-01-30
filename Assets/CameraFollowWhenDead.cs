@@ -18,14 +18,17 @@ public class CameraFollowWhenDead : MonoBehaviour {
 		if (limbController.GetIsDead ()) {
 			Vector3 pos = limbController.GetCorePos ();
 
-			print ("Corpse Y:" + pos.y);
+			//print ("Corpse Y:" + pos.y);
 			if (initialYOffset == 0.0f) 
 			{
 				initialYOffset = transform.position.y - pos.y;
 			}
-			if (pos.y + initialYOffset < transform.position.y) {
-				Vector3 newPos = new Vector3 (transform.position.x, pos.y + initialYOffset, transform.position.z);
-				transform.position = newPos;
+			if (pos.y > -15) 
+			{
+				if (pos.y + initialYOffset < transform.position.y) {
+					Vector3 newPos = new Vector3 (transform.position.x, pos.y + initialYOffset, transform.position.z);
+					transform.position = newPos;
+				}
 			}
 
 			return;

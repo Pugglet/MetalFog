@@ -23,13 +23,27 @@ public class Obstacle : MonoBehaviour {
 		transform.position += new Vector3(0, YSpeed, 0) * Time.deltaTime;
 
 		if (transform.position.y > 2) {
-			Vector3 newPos = new Vector3(0, -40, 0);
+			Vector3 newPos = new Vector3(0, -60, 0);
 			transform.position = newPos;
 		}
 	}
 
 	void OnTriggerEnter(Collider other) {
 		limbController.NotifyCollision (other);
+
+		//GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		//cube.transform.position = other.//new Vector3(0, 0.5F, 0);
 		//Destroy(gameObject); 
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		limbController.NotifyCollision (collision.collider);
+
+		// If you want collision cubes...:
+		/*
+		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		cube.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
+		cube.transform.position = collision.contacts [0].point;//new Vector3(0, 0.5F, 0);
+		*/
 	}
 }

@@ -82,7 +82,7 @@ public class LimbController : MonoBehaviour
         foreach (Collider collider in GetComponentsInChildren<Collider>())
         {
             //collider.enabled = false;
-			collider.isTrigger = true;
+			//collider.isTrigger = true;
 			//collider.enabled = true;
         }
 
