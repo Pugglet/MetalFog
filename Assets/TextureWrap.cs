@@ -18,7 +18,7 @@ public class TextureWrap : MonoBehaviour {
 	void Update () {
 		if (limbController.GetIsDead ())
 			return;
-		offset.y += 0.6f * Time.deltaTime;
+		offset.y += 0.6f * Time.deltaTime * limbController.speedMultiplier;
 		//renderer.material.SetTextureOffset ("brickwall", offset);
 		//print("tex name: " + renderer.materials[ 0 ].GetTexture(0).name);
 		renderer.materials[ 0 ].SetTextureOffset ("_MainTex", offset);

@@ -32,6 +32,8 @@ public class LimbController : MonoBehaviour
 
 	private float score;
 
+	public float speedMultiplier = 1.0f;
+
     [SerializeField]
     float limitX = 0.75f;
 
@@ -78,6 +80,7 @@ public class LimbController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		speedMultiplier = 1.0f;
 		animator = GetComponent<Animator>();
 
 		//coll = GetComponent<Collider>();
@@ -136,6 +139,8 @@ public class LimbController : MonoBehaviour
 		float numLimbsMissing = (float)(limbLossCount);
 		scoreIncrease -= (1350.03f * numLimbsMissing);
 		score += Time.deltaTime * scoreIncrease;
+
+		speedMultiplier += (0.08f * Time.deltaTime);
 
 		scoreText.text = "$" + score.ToString ("F2");
 
