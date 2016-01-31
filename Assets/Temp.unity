@@ -777,6 +777,7 @@ MonoBehaviour:
   rightFootTarget: {fileID: 834851242}
   leftKneeHint: {fileID: 1535585537}
   rightKneeHint: {fileID: 719403710}
+  scoreText: {fileID: 0}
   limitX: 0.75
   limitZ: 0.75
   limbLossFailCount: 2
@@ -1395,6 +1396,7 @@ GameObject:
   - 224: {fileID: 1394541787}
   - 222: {fileID: 1394541789}
   - 114: {fileID: 1394541788}
+  - 114: {fileID: 1394541790}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1416,8 +1418,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 9, y: -42}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 9, y: -161}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1394541788
 MonoBehaviour:
@@ -1431,7 +1433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.3238463, g: 0.9632353, b: 0.120404415, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1458,6 +1460,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1394541786}
+--- !u!114 &1394541790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394541786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1404211224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2118,10 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -0.47229895
       objectReference: {fileID: 0}
+    - target: {fileID: 11456538, guid: debb7a59343125148b780b593a8f7741, type: 2}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1394541788}
     m_RemovedComponents:
     - {fileID: 14497154, guid: debb7a59343125148b780b593a8f7741, type: 2}
     - {fileID: 14480494, guid: debb7a59343125148b780b593a8f7741, type: 2}
