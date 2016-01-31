@@ -37,7 +37,7 @@ public class LimbDestruction : MonoBehaviour {
 
         for (int i = 0; i < 0; i++)
         {
-            Transform child = transform.GetChild(i);
+            GameObject child = transform.GetChild(i).gameObject;
             LimbDestruction destructionScript = child.GetComponent<LimbDestruction>();
             destructionScript.CollisionCallback();
             Debug.Log("Child limb destryoed");
