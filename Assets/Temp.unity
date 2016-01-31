@@ -2370,6 +2370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relatedLimb: {fileID: 1633718245}
+  spawnedLimb: {fileID: 0}
 --- !u!54 &1633718268
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2410,6 +2411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relatedLimb: {fileID: 1633718246}
+  spawnedLimb: {fileID: 0}
 --- !u!144 &1633718271
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2603,6 +2605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relatedLimb: {fileID: 1633718250}
+  spawnedLimb: {fileID: 100000, guid: 25e8792cd121c3940b83f778fc341003, type: 3}
 --- !u!54 &1633718279
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2643,6 +2646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relatedLimb: {fileID: 1633718251}
+  spawnedLimb: {fileID: 178928, guid: c88a34f6b3f1dd44d80019061aea2452, type: 2}
 --- !u!144 &1633718282
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2767,6 +2771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relatedLimb: {fileID: 1633718254}
+  spawnedLimb: {fileID: 0}
 --- !u!54 &1633718287
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2807,6 +2812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relatedLimb: {fileID: 1633718255}
+  spawnedLimb: {fileID: 0}
 --- !u!144 &1633718290
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2931,6 +2937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relatedLimb: {fileID: 1633718258}
+  spawnedLimb: {fileID: 0}
 --- !u!54 &1633718295
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2971,6 +2978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relatedLimb: {fileID: 1633718259}
+  spawnedLimb: {fileID: 0}
 --- !u!144 &1633718298
 CharacterJoint:
   m_ObjectHideFlags: 0

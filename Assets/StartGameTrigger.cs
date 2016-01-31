@@ -18,7 +18,7 @@ public class StartGameTrigger : MonoBehaviour {
 		//print ("Pos:" + core.transform.position.y);
 		if (Input.GetButtonUp ("Submit")
 			|| (Input.GetButtonUp ("Cancel"))
-			|| (core.transform.position.y < -2) ) 
+		)//|| (core.transform.position.y < -16) ) 
 		{
 			print ("OK start the game!");
 			SceneManager.LoadScene ("Temp"); 
