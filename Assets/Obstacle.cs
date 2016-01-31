@@ -40,10 +40,10 @@ public class Obstacle : MonoBehaviour {
 		limbController.NotifyCollision (collision.collider);
 
 		// If you want collision cubes...:
-		/*
+		
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		cube.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
 		cube.transform.position = collision.contacts [0].point;//new Vector3(0, 0.5F, 0);
-		*/
+		
 	}
 }

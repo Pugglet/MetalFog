@@ -74,6 +74,7 @@
     <Compile Include="Assets\Obstacle.cs" />
     <Compile Include="Assets\StartGameTrigger.cs" />
     <Compile Include="Assets\TextureWrap.cs" />
+    <Compile Include="Assets\UIController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
