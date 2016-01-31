@@ -140,7 +140,7 @@ public class LimbController : MonoBehaviour
 		scoreIncrease -= (1350.03f * numLimbsMissing);
 		score += Time.deltaTime * scoreIncrease;
 
-		speedMultiplier += (0.08f * Time.deltaTime);
+		speedMultiplier += (0.025f * Time.deltaTime);
 
 		scoreText.text = "$" + score.ToString ("F2");
 
