@@ -9,11 +9,16 @@ public class LimbDestruction : MonoBehaviour {
     [SerializeField]
     GameObject spawnedLimb;
 
+    [SerializeField]
+    AudioClip[] clips;
+
+    AudioSource source;
     bool activated = false;
 
     // Use this for initialization
-    void Start() {
-
+    void Start()
+    {
+        source = gameObject.AddComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +35,7 @@ public class LimbDestruction : MonoBehaviour {
 
         relatedLimb.GetComponent<SkinnedMeshRenderer>().enabled = false;
         SpawnLimb();
+        PlaySFX();
 
         int childCount = transform.childCount;
 
@@ -46,7 +52,14 @@ public class LimbDestruction : MonoBehaviour {
 
     public void SpawnLimb()
     {
-        if(spawnedLimb != null)
+        if (spawnedLimb != null)
             Instantiate(spawnedLimb, transform.position, transform.rotation);
+    }
+
+    public void PlaySFX()
+    {
+        int rand = Random.Range(0, clips.Length);
+        source.clip = clips[rand];
+        source.Play();
     }
 }
