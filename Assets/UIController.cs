@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour {
 	private Text credits2;
 	[SerializeField]
 	private Text credits3;
+	[SerializeField]
+	private Text instructionsField;
 
 	private float fadeSpeed = 0.5f;
 	private float titleAlpha;
@@ -85,6 +87,15 @@ public class UIController : MonoBehaviour {
 		Color titleColor = title.color;
 		titleColor.a = alphaCap;
 		title.color = titleColor;
+
+		// instructions
+		if (titleAlpha > 0.0f || (!titleFadingOut))
+			alphaCap = 0.0f;
+		else 
+			alphaCap = Cap (-titleAlpha);
+		titleColor = instructionsField.color;
+		titleColor.a = alphaCap;
+		instructionsField.color = titleColor;
 
 		// credits
 
