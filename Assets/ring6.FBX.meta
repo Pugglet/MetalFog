@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6c5e8cfb4ede6204cbdf9dd27303ada8
-timeCreated: 1454127448
+guid: a6881045fc5da074c9446a9034aae906
+timeCreated: 1454204004
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: ring_2
+    4300000: ring_6
     9500000: //RootNode
   materials:
     importMaterials: 1

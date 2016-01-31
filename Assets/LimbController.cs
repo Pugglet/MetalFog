@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 
@@ -24,6 +25,14 @@ public class LimbController : MonoBehaviour
 
 	[SerializeField]
 	private Transform rightKneeHint;
+
+
+	[SerializeField]
+	private Text scoreText;
+
+	private float score;
+
+	public float speedMultiplier = 1.0f;
 
     [SerializeField]
     float limitX = 0.75f;
@@ -71,6 +80,7 @@ public class LimbController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		speedMultiplier = 1.0f;
 		animator = GetComponent<Animator>();
 
 		//coll = GetComponent<Collider>();
@@ -124,6 +134,15 @@ public class LimbController : MonoBehaviour
 
 			return;
 		}
+
+		float scoreIncrease = 5630.52f;
+		float numLimbsMissing = (float)(limbLossCount);
+		scoreIncrease -= (1350.03f * numLimbsMissing);
+		score += Time.deltaTime * scoreIncrease;
+
+		speedMultiplier += (0.025f * Time.deltaTime);
+
+		scoreText.text = "$" + score.ToString ("F2");
 
         if (Input.GetKey("up"))
         {
@@ -252,6 +271,8 @@ public class LimbController : MonoBehaviour
                 // You Lose!!
 				isDead = true;
                 animator.enabled = false;
+
+				scoreText.fontSize += 10;
 
                 foreach (Collider collider in GetComponentsInChildren<Collider>())
                 {

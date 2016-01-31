@@ -20,10 +20,11 @@ public class Obstacle : MonoBehaviour {
 			YSpeed = 0;
 			return;
 		}
-		transform.position += new Vector3(0, YSpeed, 0) * Time.deltaTime;
+		float ySpeedMod = limbController.speedMultiplier;
+		transform.position += new Vector3(0, YSpeed, 0) * ySpeedMod * Time.deltaTime;
 
 		if (transform.position.y > 2) {
-			Vector3 newPos = new Vector3(0, -60, 0);
+			Vector3 newPos = new Vector3(0, -120, 0);
 			transform.position = newPos;
 		}
 	}
@@ -40,10 +41,10 @@ public class Obstacle : MonoBehaviour {
 		limbController.NotifyCollision (collision.collider);
 
 		// If you want collision cubes...:
-		
+		/*
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		cube.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
 		cube.transform.position = collision.contacts [0].point;//new Vector3(0, 0.5F, 0);
-		
+		*/
 	}
 }
