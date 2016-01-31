@@ -68,6 +68,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BackgroundMusic.cs" />
     <Compile Include="Assets\CameraFollowWhenDead.cs" />
     <Compile Include="Assets\LimbController.cs" />
     <Compile Include="Assets\LimbDestruction.cs" />
