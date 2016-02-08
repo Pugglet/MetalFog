@@ -5,21 +5,30 @@ public class BackgroundMusic : MonoBehaviour {
 
     [SerializeField]
     AudioClip[] clip;
+
+	AudioSource source;
     
     // Use this for initialization
     void Start ()
     {
-        int clipCount = clip.Length;
-        int AynRand = Random.Range(0, clipCount);
-
-        AudioSource source = GetComponent<AudioSource>();
-        source.clip = clip[AynRand];
-        source.Play();
+		source = GetComponent<AudioSource>();
     }
+
+	void PlayRandom()
+	{
+		int clipCount = clip.Length;
+		int AynRand = Random.Range(0, clipCount);
+
+		source.clip = clip[AynRand];
+
+		if(source.isPlaying == false)
+			source.Play();
+	}
 	
 	// Update is called once per frame
 	void Update ()
-    {
-	
+    {		
+		if(source.isPlaying == false)
+			PlayRandom();
 	}
 }

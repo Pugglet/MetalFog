@@ -41,7 +41,7 @@ public class LimbDestruction : MonoBehaviour {
 
         Debug.Log(relatedLimb.name + " has " + childCount.ToString() + " children");
 
-        for (int i = 0; i < 0; i++)
+		for (int i = 0; i < childCount; i++)
         {
             GameObject child = transform.GetChild(i).gameObject;
             LimbDestruction destructionScript = child.GetComponent<LimbDestruction>();
