@@ -45,9 +45,14 @@ public class LimbDestruction : MonoBehaviour {
         {
             GameObject child = transform.GetChild(i).gameObject;
             LimbDestruction destructionScript = child.GetComponent<LimbDestruction>();
-            destructionScript.CollisionCallback();
-            Debug.Log("Child limb destryoed");
+			if(destructionScript != null)
+			{
+            	destructionScript.CollisionCallback();
+            	Debug.Log("Child limb destryoed");
+			}
         }
+
+		GetComponent<Collider>().enabled = false;
     }
 
     public void SpawnLimb()
