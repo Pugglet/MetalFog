@@ -50,6 +50,7 @@
      <Compile Include="Assets\LimbController.cs" />
      <Compile Include="Assets\LimbDestruction.cs" />
      <Compile Include="Assets\Obstacle.cs" />
+     <Compile Include="Assets\Ragdoll.cs" />
      <Compile Include="Assets\StartGameTrigger.cs" />
      <Compile Include="Assets\TextureWrap.cs" />
      <Compile Include="Assets\UIController.cs" />
